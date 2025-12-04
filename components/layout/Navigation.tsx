@@ -30,7 +30,7 @@ export function Navigation() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? " backdrop-blur-sm border-b border-gray-200 py-4" : "bg-white py-6"
+        isScrolled ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 py-4" : "bg-white py-6"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
