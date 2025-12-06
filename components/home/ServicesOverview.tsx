@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, LineChart, GraduationCap } from "lucide-react";
+import { Code2, LineChart, GraduationCap, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { NewspaperModal } from "@/components/ui/NewspaperModal";
 
@@ -91,7 +91,7 @@ export function ServicesOverview() {
 
   return (
     <>
-      <section className="py-20 md:py-32 bg-gray-50">
+      <section className="py-24 relative z-10">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -100,10 +100,10 @@ export function ServicesOverview() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
               Our expertise
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300">
               We combine deep technical knowledge with business acumen to deliver measurable results.
             </p>
           </motion.div>
@@ -117,24 +117,24 @@ export function ServicesOverview() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="bg-white p-8 h-full border border-gray-200 hover:border-mckinsey-600 transition-colors">
-                  <div className="w-12 h-12 bg-mckinsey-600 text-white flex items-center justify-center mb-6">
+                <div className="group relative h-full bg-white/5 backdrop-blur-sm border border-white/10 p-8 transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-mckinsey-600/20 text-mckinsey-400 border border-mckinsey-600/30 flex items-center justify-center mb-6 rounded-lg group-hover:bg-mckinsey-600 group-hover:text-white transition-colors">
                     {service.icon}
                   </div>
                   
-                  <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+                  <h3 className="text-2xl font-serif font-bold text-white mb-4">
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-600 leading-relaxed mb-6">
+                  <p className="text-gray-400 leading-relaxed mb-6">
                     {service.description}
                   </p>
                   
                   <button
                     onClick={() => setSelectedService(index)}
-                    className="text-mckinsey-600 font-medium hover:underline"
+                    className="text-white/70 font-medium hover:text-white flex items-center gap-2 transition-colors"
                   >
-                    Learn more →
+                    Learn more <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </motion.div>

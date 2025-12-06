@@ -3,7 +3,8 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
-import { Cursor } from "@/components/ui/Cursor";
+import { SmoothScroll } from "@/components/effects/SmoothScroll";
+import { GlobalEffects } from "@/components/effects/GlobalEffects";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ 
@@ -35,9 +36,10 @@ export default function RootLayout({
         inter.variable,
         playfair.variable
       )}>
-        <Cursor />
+        <SmoothScroll />
+        <GlobalEffects />
         <Navigation />
-        <main className="min-h-screen pt-20">
+        <main className="min-h-screen">
           {children}
         </main>
         <Footer />

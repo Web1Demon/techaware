@@ -53,7 +53,7 @@ export function InstituteGallery() {
 
   return (
     <>
-      <section className="py-20 md:py-32 bg-blue-600">
+      <section className="py-24 relative z-10">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -64,12 +64,12 @@ export function InstituteGallery() {
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
               Our institute
             </h2>
-            <p className="text-xl text-white">
+            <p className="text-xl text-gray-300">
               Experience world-class facilities designed for immersive learning and collaboration.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
             {galleryImages.map((image, index) => {
               // Define height classes for masonry effect
               const heightClass = 
@@ -80,24 +80,25 @@ export function InstituteGallery() {
               return (
                 <motion.div
                   key={image.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`group relative overflow-hidden cursor-pointer ${heightClass}`}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  className={`group relative overflow-hidden cursor-pointer rounded-xl border border-white/10 ${heightClass}`}
                   onClick={() => setSelectedImage(index)}
                 >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="text-white font-serif font-bold text-xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                  
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                       <h3 className="text-white font-serif font-bold text-xl mb-2">
                         {image.title}
                       </h3>
-                    </div>
+                      <div className="w-12 h-1 bg-mckinsey-600 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 </motion.div>
               );

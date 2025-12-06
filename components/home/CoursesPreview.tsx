@@ -57,7 +57,7 @@ export function CoursesPreview() {
   const displayedCourses = showAll ? [...initialCourses, ...additionalCourses] : initialCourses;
 
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-24 relative z-10">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <motion.div
@@ -66,17 +66,17 @@ export function CoursesPreview() {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
               Upcoming courses
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300">
               Intensive physical training programs designed to accelerate your career in technology.
             </p>
           </motion.div>
           
           <button 
             onClick={() => setShowAll(!showAll)}
-            className="text-mckinsey-600 font-medium hover:underline whitespace-nowrap"
+            className="text-white/80 font-medium hover:text-white transition-colors whitespace-nowrap"
           >
             {showAll ? "Show less" : "View all courses"} →
           </button>
@@ -91,33 +91,38 @@ export function CoursesPreview() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ delay: index * 0.1 }}
-                className="border border-gray-200 bg-white hover:border-mckinsey-600 transition-colors"
+                className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
               >
                 <div className="p-8">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+                    <h3 className="text-2xl font-serif font-bold text-white mb-4">
                       {course.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-400 leading-relaxed">
                       {course.description}
                     </p>
                   </div>
 
-                  <div className="space-y-3 mb-6 text-sm text-gray-600">
+                  <div className="space-y-3 mb-6 text-sm text-gray-300">
                     <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-2 text-mckinsey-600" />
+                      <Calendar className="w-4 h-4 mr-2 text-mckinsey-400" />
                       {course.batch}
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-2 text-mckinsey-600" />
+                      <MapPin className="w-4 h-4 mr-2 text-mckinsey-400" />
                       {course.location}
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">
+                  <div className="pt-6 border-t border-white/10">
+                    <span className="text-sm font-medium text-gray-400">
                       Duration: {course.duration}
                     </span>
+                  </div>
+                  
+                  {/* Hover visual */}
+                  <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-2 h-2 rounded-full bg-mckinsey-500 shadow-[0_0_10px_rgba(0,125,184,0.8)]" />
                   </div>
                 </div>
               </motion.div>

@@ -1,93 +1,90 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { motion } from "framer-motion"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { HeroCarousel } from "./HeroCarousel"
 
 export function Hero() {
   return (
-    <section className="relative bg-gray-900 pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-50"
-          onError={(e) => {
-            console.error("Video failed to load:", e);
-            // Hide video if it fails to load
-            e.currentTarget.style.display = 'none';
-          }}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Carousel */}
+      <HeroCarousel />
+      
+      <div className="container relative z-10 px-4 md:px-6 py-32 mt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="max-w-4xl"
         >
-          {/* Local background video */}
-          <source src="/bg-video.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-900/70 to-gray-900/90" />
-      </div>
+           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8, delay: 0.4 }}
+             className="mb-8"
+           >
+              <span className="px-3 py-1 border border-white/30 rounded-full text-xs font-medium tracking-widest text-white uppercase backdrop-blur-sm">
+                Global Strategy & Innovation
+              </span>
+           </motion.div>
 
-      <div className="container px-4 md:px-6 relative z-10">
-        <div className="max-w-4xl">
+          <div className="overflow-hidden mb-8">
+            <motion.h1
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.1] tracking-tight"
+            >
+              Defining the <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-mckinsey-300 to-white">Next Era</span>
+            </motion.h1>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="text-xl md:text-2xl text-gray-200 max-w-2xl mb-12 leading-relaxed font-light"
+          >
+            We partner with the world's most ambitious leaders to engineer solutions that shape the future.
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
+            transition={{ duration: 0.8, delay: 1 }}
+            className="flex flex-col sm:flex-row gap-5"
           >
-            {/* Eyebrow */}
-            <div className="inline-block">
-              <span className="text-sm font-medium text-mckinsey-400 tracking-wide uppercase">
-                Technology Consulting & Education
-              </span>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
-              Accelerating digital transformation through expertise
-            </h1>
-
-            {/* Subheadline */}
-            
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link
-                href="/book"
-                className="inline-flex items-center justify-center px-8 py-4 border border-mckinsey-600 text-white font-medium hover:bg-mckinsey-700 transition-colors"
-              >
-                Book an Appointment
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div className="container px-4 md:px-6 mt-24 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl">
-          {[
-            { value: "500+", label: "Professionals trained" },
-            { value: "50+", label: "Enterprise clients" },
-            { value: "98%", label: "Client satisfaction" },
-            { value: "90%", label: "Job placement rate" },
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-              className="border-l-2 border-mckinsey-500 pl-4"
+            <Link
+              href="/contact"
+              className="group relative inline-flex items-center justify-center px-8 py-4 bg-white text-black rounded-full font-bold text-lg overflow-hidden transition-all hover:bg-gray-200"
             >
-              <div className="text-3xl md:text-4xl font-serif font-bold text-white">
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-300 mt-1">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
+              <span className="relative z-10 flex items-center gap-2">
+                Begin Journey
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+            <Link
+              href="/services"
+              className="group inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full font-bold text-lg transition-all hover:bg-white/20"
+            >
+              Our Services
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-white/50 text-xs uppercase tracking-widest">Scroll</span>
+        <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
+      </motion.div>
     </section>
-  );
+  )
 }
